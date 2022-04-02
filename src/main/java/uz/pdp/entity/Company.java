@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 @AllArgsConstructor
@@ -17,16 +19,15 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank(message = "company name is required")
     @Column(nullable = false)
-    private String cName;
+    private String name;
 
+    @NotNull(message = "director name is required")
     @Column(nullable = false)
-    private String dName;
+    private String directorName;
 
+    @NotNull(message = "address is required")
     @OneToOne(optional = false)
     private Address address;
-
-    public String getcName() {
-        return cName;
-    }
 }

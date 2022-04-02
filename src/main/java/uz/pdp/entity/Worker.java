@@ -20,13 +20,13 @@ public class Worker {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String phoneNumber;
 
-    @OneToOne
+    @ManyToOne()
     private Address address;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "department_id", nullable = false)
     private Department department;
 

@@ -18,9 +18,9 @@ public class Department {
     private Integer id;
 
     @Column(nullable = false)
-    private String dName;
+    private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "company_id")
     private Company company;
 }
