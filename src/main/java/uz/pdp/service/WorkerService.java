@@ -124,8 +124,15 @@ public class WorkerService {
                     .message("Worker isn't found")
                     .active(false)
                     .build();
+        try {
 
-        repository.deleteById(id);
+            repository.deleteById(id);
+        }catch (Exception e){
+            return Status.builder()
+                    .active(false)
+                    .message("Address is used")
+                    .build();
+        }
         return Status.builder()
                 .message("Worker deleted")
                 .active(true)

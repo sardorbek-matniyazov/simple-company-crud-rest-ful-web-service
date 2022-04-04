@@ -85,7 +85,15 @@ public class DepartmentService {
                     .message("there is not any department with this id")
                     .active(false)
                     .build();
-        repository.deleteById(id);
+        try {
+
+            repository.delete(repository.getById(id));
+        }catch (Exception e){
+            return Status.builder()
+                    .active(false)
+                    .message("Address is used")
+                    .build();
+        }
         return Status.builder()
                 .message("successfully deleted")
                 .active(true)

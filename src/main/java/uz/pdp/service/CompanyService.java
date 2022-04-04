@@ -93,7 +93,15 @@ public class CompanyService {
                     .message("Company with this id doesn't exist")
                     .active(false)
                     .build();
-        repository.deleteById(id);
+        try {
+
+            repository.delete(byId.get());
+        }catch (Exception e){
+            return Status.builder()
+                    .active(false)
+                    .message("Address is used")
+                    .build();
+        }
         return Status.builder()
                 .message("Company deleted successfully")
                 .active(true)

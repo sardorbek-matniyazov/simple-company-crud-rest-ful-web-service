@@ -69,8 +69,15 @@ public class AddressService {
                     .active(false)
                     .message("Address not found")
                     .build();
+        try {
 
         repository.delete(byId.get());
+        }catch (Exception e){
+            return Status.builder()
+                    .active(false)
+                    .message("Address is used")
+                    .build();
+        }
 
         return Status.builder()
                 .active(true)
